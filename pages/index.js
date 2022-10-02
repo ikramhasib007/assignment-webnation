@@ -12,6 +12,10 @@ function HomePage() {
           <h1>Yellow Pages</h1>
         </header>
 
+        <section className={styles.searchContainer}>
+          <input type="search" placeholder='search...' name="search" id="search" />
+          <button type="button">Add</button>
+        </section>
         
         <main className={styles.main}>
           <div className={styles.grid}>
