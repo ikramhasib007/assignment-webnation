@@ -1,0 +1,50 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: block;
+
+  -webkit-animation-name: modalOpen;
+	   -moz-animation-name: modalOpen;
+	     -o-animation-name: modalOpen;
+          animation-name: modalOpen;
+
+    -webkit-animation-duration: 0.3s;
+    -moz-animation-duration: 0.3s;
+      -o-animation-duration: 0.3s;
+        animation-duration: 0.3s;
+}
+
+.modal .modalDialog {
+  min-width: rem(300px);
+  background-color: #fff;
+  z-index: 1001;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  margin-top: 15vh;
+
+  -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+     -moz-transform: translateX(-50%);
+     -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+
+  border-radius: 2px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2),
+  0 3px 1px -2px rgba(0, 0, 0, 0.12),
+  0 2px 2px 0 rgba(0, 0, 0, 0.14)
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

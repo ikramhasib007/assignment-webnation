@@ -1,7 +1,11 @@
 import Head from 'next/head'
+import { useState } from 'react'
+import Modal from '../src/components/Modal'
 import styles from '../styles/Home.module.css'
 
 function HomePage() {
+  const [open, setOpen] = useState(false)
+  
   return (
     <>
       <Head>
@@ -13,8 +17,18 @@ function HomePage() {
         </header>
 
         <section className={styles.searchContainer}>
-          <input type="search" placeholder='search...' name="search" id="search" />
-          <button type="button">Add</button>
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder='search...'
+          />
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+          >
+            Add
+          </button>
         </section>
         
         <main className={styles.main}>
@@ -49,6 +63,13 @@ function HomePage() {
           </div>
         </main>
       </div>
+
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, veniam.</p>
+      </Modal>
     </>
   )
 }
