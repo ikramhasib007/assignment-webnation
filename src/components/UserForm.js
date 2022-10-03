@@ -9,7 +9,7 @@ const schema = yup.object().shape({
   email: yup.string().email().label('E-mail').required(),
   phone: yup.string().label('Phone').when(['phone'], {
     is: (val) => !!val,
-    then: yup.string().matches(/^[+0-9]+$/, 'Phone number is not valid').min(11, 'Phone number is not valid').max(14, 'Phone number is not valid')
+    then: yup.string().matches(/^(?:(?:\+|00)88|01)?\d{11}$/, 'Phone number is not valid')
   }).required(),
 }, [
   ['phone', 'phone']
