@@ -14,6 +14,11 @@ function Modal({ open, onClose, children, title }) {
     return () => window.removeEventListener('keydown', close)
   },[onClose])
 
+  useEffect(() => {
+    if(open) document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = null; }
+  }, [open]);
+
   if(!open) return null;
 
   return (
