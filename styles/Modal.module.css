@@ -72,3 +72,13 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 768px) {
+  .modal .modalDialog {
+    min-width: 100%;
+    bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+

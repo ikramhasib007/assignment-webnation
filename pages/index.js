@@ -22,7 +22,7 @@ function HomePage() {
             type="search"
             name="search"
             id="search"
-            placeholder='search...'
+            placeholder='Search...'
           />
           <button
             className={styles.btn}

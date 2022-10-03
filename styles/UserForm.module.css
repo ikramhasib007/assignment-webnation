@@ -72,3 +72,9 @@
   cursor: pointer;
   border: 1px solid #eee;
 }
+
+@media (max-width: 768px) {
+  .formContainer {
+    width: 100%;
+  }
+}
