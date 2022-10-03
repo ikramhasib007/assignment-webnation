@@ -5,7 +5,7 @@ import Router from 'next/router'
 import { ApolloProvider } from '@apollo/client'
 import ProgressBar from '@badrap/bar-of-progress'
 import getClient from 'apollo'
-import '../styles/globals.css'
+import '@/styles/globals.css'
 
 const progress = new ProgressBar({
   size: 2,

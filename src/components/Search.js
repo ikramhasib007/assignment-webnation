@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useReactiveVar } from "@apollo/client"
-import { searchQueryVar } from "src/stores"
+import { searchQueryVar } from "@/src/stores"
 
 function Search() {
   const searchQuery = useReactiveVar(searchQueryVar)

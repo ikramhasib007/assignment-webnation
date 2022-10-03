@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import { useState } from 'react'
 import { useQuery, useReactiveVar } from '@apollo/client'
-import Modal from 'components/Modal'
-import UserForm from 'components/UserForm'
-import styles from 'styles/Home.module.css'
-import { GET_USERS } from 'src/operations/user'
-import { searchQueryVar } from 'src/stores'
-import Search from 'components/Search'
+import Modal from '@/components/modal'
+import CreateUser from '@/components/user/Create'
+import styles from '@/styles/Home.module.css'
+import { GET_USERS } from '@/src/operations/user'
+import { searchQueryVar } from '@/src/stores'
+import Search from '@/components/Search'
 
 function HomePage() {
   const [open, setOpen] = useState(false)
@@ -59,7 +59,7 @@ function HomePage() {
         onClose={() => setOpen(false)}
         title="Add new member"
       >
-        <UserForm
+        <CreateUser
           onClose={() => setOpen(false)}
         />
       </Modal>

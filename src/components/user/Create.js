@@ -2,10 +2,10 @@ import PropTypes from 'prop-types'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import styles from '../../styles/UserForm.module.css'
+import styles from '@/styles/CreateUser.module.css'
 import { useMutation, useReactiveVar } from '@apollo/client'
-import { CREATE_USER, GET_USERS } from 'src/operations/user'
-import { searchQueryVar } from 'src/stores'
+import { CREATE_USER, GET_USERS } from '@/src/operations/user'
+import { searchQueryVar } from '@/src/stores'
 
 const schema = yup.object().shape({
   name: yup.string().label('Name').required(),
@@ -18,7 +18,7 @@ const schema = yup.object().shape({
   ['phone', 'phone']
 ])
 
-function UserForm({ onClose }) {
+function CreateUser({ onClose }) {
   const searchQuery = useReactiveVar(searchQueryVar)
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
@@ -126,12 +126,12 @@ function UserForm({ onClose }) {
   )
 }
 
-UserForm.defaultProps = {
+CreateUser.defaultProps = {
   onClose: () => {}
 }
 
-UserForm.propTypes = {
+CreateUser.propTypes = {
   onClose: PropTypes.func.isRequired
 }
 
-export default UserForm
+export default CreateUser

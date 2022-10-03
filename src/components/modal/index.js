@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
-import styles from '../../styles/Modal.module.css'
+import styles from '@/styles/Modal.module.css'
 
 function Modal({ open, onClose, children, title }) {
 
