@@ -24,6 +24,8 @@ yarn && yarn run dev
 
 ## For e2e testing:
 
+Open new terminal
+
 ```bash
 npm run cypress
 # or

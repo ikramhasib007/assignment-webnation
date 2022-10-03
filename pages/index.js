@@ -1,20 +1,13 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import { useQuery, useReactiveVar } from '@apollo/client'
 import Modal from '@/components/modal'
 import CreateUser from '@/components/user/Create'
 import styles from '@/styles/Home.module.css'
-import { GET_USERS } from '@/src/operations/user'
-import { searchQueryVar } from '@/src/stores'
 import Search from '@/components/Search'
+import UserList from '@/src/components/user/UserList'
 
 function HomePage() {
   const [open, setOpen] = useState(false)
-  const searchQuery = useReactiveVar(searchQueryVar)
-  const { data, loading } = useQuery(GET_USERS, {
-    variables: { query: searchQuery }
-  })
-  // console.log('[Users] data, loading: ', data, loading);
   
   return (
     <>
@@ -38,19 +31,7 @@ function HomePage() {
         </section>
         
         <main className={styles.main}>
-          {loading ? 'Loading...' : <>
-            {data?.users.length ? <>
-              <div className={styles.grid}>
-                {data.users.map(item => (
-                  <a key={item.id} href="#" className={styles.card}>
-                    <h2>{item.name}</h2>
-                    <p>E-mail: <span>{item.email}</span></p>
-                    <p>Phone: <span>{item.phone}</span></p>
-                  </a>
-                ))}
-              </div>
-            </> : <span>No data</span>}
-          </>}
+          <UserList />
         </main>
       </div>
 
