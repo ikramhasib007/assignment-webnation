@@ -16,10 +16,26 @@ export function cursorTakePaginatedFieldPolicy() {
         // If we found afterIndex, insert incoming after that index.
         merged.splice(afterIndex + 1, 0, ...incoming);
       } else {
-        // Otherwise insert incoming at the end of the existing data.
-        merged.push(...incoming);
+        // Otherwise, insert incoming at the beginning of the existing data.
+        merged.splice(0, 0, ...incoming);
       }
       return merged
     },
+
+    read(existing, { args, readField }) {
+      if(existing && existing.length && !!args.query) {
+        return existing.filter(userRef => {
+          const userName = readField('name', userRef);
+          const userEmail = readField('email', userRef);
+          const userPhone = readField('phone', userRef);
+          return (
+            userName.toLowerCase().includes(args.query.toLowerCase()) 
+            || userEmail.toLowerCase().includes(args.query?.toLowerCase())
+            || userPhone.toLowerCase().includes(args.query?.toLowerCase())
+          )
+        });
+      }
+      return existing;
+    }
   };
 }

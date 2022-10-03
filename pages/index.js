@@ -39,7 +39,7 @@ function HomePage() {
         
         <main className={styles.main}>
           {loading ? 'Loading...' : <>
-            {data.users.length ? <>
+            {data?.users.length ? <>
               <div className={styles.grid}>
                 {data.users.map(item => (
                   <a key={item.id} href="#" className={styles.card}>
