@@ -2,7 +2,9 @@ import 'cross-fetch'
 import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
+import { ApolloProvider } from '@apollo/client'
 import ProgressBar from '@badrap/bar-of-progress'
+import getClient from 'apollo'
 import '../styles/globals.css'
 
 const progress = new ProgressBar({
@@ -17,13 +19,15 @@ Router.events.on("routeChangeComplete", progress.finish);
 Router.events.on("routeChangeError", progress.finish);
 
 function MyApp({ Component, pageProps }) {
+  const client = getClient(pageProps.token)
+
   return (
-    <>
+    <ApolloProvider client={client}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Component {...pageProps} />
-    </>
+    </ApolloProvider>
   )
 }
 
