@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.1",
+    "@hookform/resolvers": "^2.9.8",
     "cross-fetch": "^3.1.5",
     "next": "12.3.1",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.36.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "8.24.0",

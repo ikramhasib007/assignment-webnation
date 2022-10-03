@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useState } from 'react'
 import Modal from '../src/components/Modal'
+import UserForm from '../src/components/UserForm'
 import styles from '../styles/Home.module.css'
 
 function HomePage() {
@@ -24,6 +25,7 @@ function HomePage() {
             placeholder='search...'
           />
           <button
+            className={styles.btn}
             type="button"
             onClick={() => setOpen(true)}
           >
@@ -67,8 +69,11 @@ function HomePage() {
       <Modal
         open={open}
         onClose={() => setOpen(false)}
+        title="Add new member"
       >
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, veniam.</p>
+        <UserForm
+          onCancel={() => setOpen(false)}
+        />
       </Modal>
     </>
   )

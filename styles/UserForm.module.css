@@ -1,0 +1,74 @@
+.formContainer {
+  width: 36rem;
+  padding: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.gridItem {
+  grid-column: span 1 / span 1;
+}
+
+.gridItem label {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #444;
+}
+.gridItem input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #b7c1ac;
+  margin-top: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.errMsg {
+  margin: 0;
+  margin-top: 0.125rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: red;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 1px solid #eaf2d7;
+  background-color: #eaf2d7;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.btn:hover {
+  cursor: pointer;
+  border: 1px solid #b7c1ac;
+}
+
+.cancelBtn {
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: #fff;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.cancelBtn:hover {
+  cursor: pointer;
+  border: 1px solid #eee;
+}
