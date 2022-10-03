@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import styles from '../../styles/UserForm.module.css'
+import { useMutation, useReactiveVar } from '@apollo/client'
+import { CREATE_USER, GET_USERS } from 'src/operations/user'
+import { searchQueryVar } from 'src/stores'
 
 const schema = yup.object().shape({
   name: yup.string().label('Name').required(),
@@ -15,9 +18,9 @@ const schema = yup.object().shape({
   ['phone', 'phone']
 ])
 
-function UserForm({ onCancel }) {
-
-  const { register, control, handleSubmit, formState: { errors } } = useForm({
+function UserForm({ onClose }) {
+  const searchQuery = useReactiveVar(searchQueryVar)
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       name: '',
@@ -26,9 +29,41 @@ function UserForm({ onCancel }) {
     }
   })
 
-  function onSubmit(data) {
-    console.log('data: ', data);
+  const [mutate, { loading }] = useMutation(CREATE_USER, {
+    update(cache, { data: { createUser } }) {
+      const cacheData = cache.readQuery({
+        query: GET_USERS,
+        variables: { query: searchQuery }
+      })
 
+      cache.writeQuery({
+        query: GET_USERS,
+        variables: { query: searchQuery },
+        data: {
+          users: [createUser, ...cacheData.users]
+        }
+      })
+    }
+  })
+
+  function onSubmit(data) {
+    if (!loading) {
+      mutate({
+        variables: { data },
+        optimisticResponse: {
+          createUser: {
+            id: 'somerandomid',
+            ...data,
+            __typename: 'User'
+          }
+        }
+      })
+      .then(() => {
+        onClose()
+      }).catch((err) => {
+        console.log('err: ', err);
+      })
+    }
   }
 
   return (
@@ -72,7 +107,7 @@ function UserForm({ onCancel }) {
       <div className={styles.btnContainer}>
         <button
           className={styles.cancelBtn}
-          onClick={onCancel}
+          onClick={onClose}
         >
           Cancel
         </button>
@@ -88,11 +123,11 @@ function UserForm({ onCancel }) {
 }
 
 UserForm.defaultProps = {
-  onCancel: () => {}
+  onClose: () => {}
 }
 
 UserForm.propTypes = {
-  onCancel: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired
 }
 
 export default UserForm

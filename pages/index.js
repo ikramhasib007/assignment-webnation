@@ -62,7 +62,7 @@ function HomePage() {
         title="Add new member"
       >
         <UserForm
-          onCancel={() => setOpen(false)}
+          onClose={() => setOpen(false)}
         />
       </Modal>
     </>

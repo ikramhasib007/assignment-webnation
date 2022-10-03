@@ -5,8 +5,16 @@ const typeDefs = /* GraphQL */ `
   type Query {
     users(query: String): [User!]!
   }
+  type Mutation {
+    createUser(data: CreateUserInput!): User!
+  }
   type User {
     id: ID!
+    name: String!
+    email: String!
+    phone: String!
+  }
+  input CreateUserInput {
     name: String!
     email: String!
     phone: String!
@@ -26,6 +34,19 @@ const resolvers = {
       }
     },
   },
+
+  Mutation: {
+    async createUser(parent, args, ctx, info) {
+      try {
+        return {
+          id: Math.floor(Math.random() * 1000) + 1,
+          ...args.data
+        };
+      } catch (error) {
+        throw new Error(error)
+      }
+    }
+  }
 }
 
 const server = createServer({
