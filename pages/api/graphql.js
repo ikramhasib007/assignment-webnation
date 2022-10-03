@@ -3,7 +3,7 @@ const API_URL = "https://jsonplaceholder.typicode.com/users"
 
 const typeDefs = /* GraphQL */ `
   type Query {
-    users: [User!]!
+    users(query: String): [User!]!
   }
   type User {
     id: ID!

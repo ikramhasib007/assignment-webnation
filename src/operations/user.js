@@ -5,7 +5,7 @@ export const GET_USERS = gql`
   ${USER_FIELDS}
 
   query GetUsers(
-    $query: Stirng
+    $query: String
   ) {
     users(query: $query) {
       ...UserFields

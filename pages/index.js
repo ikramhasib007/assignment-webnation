@@ -1,11 +1,19 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import Modal from '../src/components/Modal'
-import UserForm from '../src/components/UserForm'
-import styles from '../styles/Home.module.css'
+import { useQuery, useReactiveVar } from '@apollo/client'
+import Modal from 'components/Modal'
+import UserForm from 'components/UserForm'
+import styles from 'styles/Home.module.css'
+import { GET_USERS } from 'src/operations/user'
+import { searchQueryVar } from 'src/stores'
 
 function HomePage() {
   const [open, setOpen] = useState(false)
+  const searchQuery = useReactiveVar(searchQueryVar)
+  const { data, loading } = useQuery(GET_USERS, {
+    variables: { query: searchQuery }
+  })
+  // console.log('[Users] data, loading: ', data, loading);
   
   return (
     <>
@@ -34,35 +42,17 @@ function HomePage() {
         </section>
         
         <main className={styles.main}>
-          <div className={styles.grid}>
-            <a href="#" className={styles.card}>
-              <h2>John Doe</h2>
-              <p>E-mail: <span>ikramhasib007@gmail.com</span></p>
-              <p>Phone: +12088034487</p>
-            </a>
-            <a href="#" className={styles.card}>
-              <h2>John Doe</h2>
-              <p>E-mail: <span>ikramhasib007@gmail.com</span></p>
-              <p>Phone: +12088034487</p>
-            </a>
-            <a href="#" className={styles.card}>
-              <h2>John Doe</h2>
-              <p>E-mail: <span>ikramhasib007@gmail.com</span></p>
-              <p>Phone: +12088034487</p>
-            </a>
-
-            <a href="#" className={styles.card}>
-              <h2>John Doe</h2>
-              <p>E-mail: <span>ikramhasib007@gmail.com</span></p>
-              <p>Phone: +12088034487</p>
-            </a>
-
-            <a href="#" className={styles.card}>
-              <h2>John Doe</h2>
-              <p>E-mail: <span>ikramhasib007@gmail.com</span></p>
-              <p>Phone: +12088034487</p>
-            </a>
-          </div>
+          {loading ? 'Loading...' : <>
+            <div className={styles.grid}>
+              {data.users.map(item => (
+                <a key={item.id} href="#" className={styles.card}>
+                  <h2>{item.name}</h2>
+                  <p>E-mail: <span>{item.email}</span></p>
+                  <p>Phone: <span>{item.phone}</span></p>
+                </a>
+              ))}
+            </div>
+          </>}
         </main>
       </div>
 
