@@ -20,10 +20,11 @@
 }
 
 .modal .modalDialog {
-  min-width: rem(300px);
+  min-width: 18.75rem;
   background-color: #fff;
   z-index: 1001;
   display: flex;
+  flex-direction: column;
   position: absolute;
   left: 50%;
   margin-top: 15vh;
@@ -34,10 +35,33 @@
      -o-transform: translateX(-50%);
       transform: translateX(-50%);
 
-  border-radius: 2px;
+  border-radius: 5px;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2),
   0 3px 1px -2px rgba(0, 0, 0, 0.12),
   0 2px 2px 0 rgba(0, 0, 0, 0.14)
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 1rem 0.25rem 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+.header p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.crossBtn {
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: #f0f0f0;
+  font-size: 10px;
+  line-height: 1.2;
+  align-items: center;
+  cursor: pointer;
 }
 
 @keyframes modalOpen {

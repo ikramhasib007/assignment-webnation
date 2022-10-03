@@ -39,7 +39,7 @@
   outline: none;
 }
 
-.searchContainer button {
+.btn {
   padding: 0.5rem 2rem;
   border-radius: 5px;
   border: 1px solid #eaf2d7;
@@ -47,7 +47,7 @@
   font-size: 1rem;
   line-height: 1.25;
 }
-.searchContainer button:hover {
+.btn:hover {
   cursor: pointer;
   border: 1px solid #b7c1ac;
 }

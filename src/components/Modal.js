@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import styles from '../../styles/Modal.module.css'
 
-function Modal({ open, onClose, children }) {
+function Modal({ open, onClose, children, title }) {
 
   useEffect(() => {
     const close = (e) => {
@@ -19,6 +19,10 @@ function Modal({ open, onClose, children }) {
   return (
     <div className={styles.modal}>
       <div className={styles.modalDialog}>
+        <div className={styles.header}>
+          <p>{title}</p>
+          <span onClick={() => onClose()} className={styles.crossBtn}>{"\u274C"}</span>
+        </div>
         {children}
       </div>
     </div>
@@ -28,11 +32,13 @@ function Modal({ open, onClose, children }) {
 Modal.defaultProps = {
   open: false,
   onClose: () => {},
+  title: 'Modal Title'
 }
 
 Modal.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  title: PropTypes.string
 }
 
 export default Modal
