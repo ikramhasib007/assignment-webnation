@@ -76,6 +76,7 @@ function UserForm({ onClose }) {
           <input
             type="text"
             name='name'
+            data-testid="name"
             {...register('name')}
           />
           {errors.name && <p className={styles.errMsg}>{errors.name?.message}</p>}
@@ -87,6 +88,7 @@ function UserForm({ onClose }) {
           <input
             type="email"
             id='email'
+            data-testid="email"
             {...register('email')}
           />
           {errors.email && <p className={styles.errMsg}>{errors.email?.message}</p>}
@@ -98,6 +100,7 @@ function UserForm({ onClose }) {
           <input
             type="text"
             id='phone'
+            data-testid="phone"
             {...register('phone')}
           />
           {errors.phone && <p className={styles.errMsg}>{errors.phone?.message}</p>}
@@ -112,6 +115,7 @@ function UserForm({ onClose }) {
           Cancel
         </button>
         <button
+          data-testid="add-user"
           className={styles.btn}
           type='submit'
         >
