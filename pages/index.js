@@ -6,6 +6,7 @@ import UserForm from 'components/UserForm'
 import styles from 'styles/Home.module.css'
 import { GET_USERS } from 'src/operations/user'
 import { searchQueryVar } from 'src/stores'
+import Search from 'components/Search'
 
 function HomePage() {
   const [open, setOpen] = useState(false)
@@ -26,12 +27,7 @@ function HomePage() {
         </header>
 
         <section className={styles.searchContainer}>
-          <input
-            type="search"
-            name="search"
-            id="search"
-            placeholder='Search...'
-          />
+          <Search />
           <button
             className={styles.btn}
             type="button"
@@ -43,15 +39,17 @@ function HomePage() {
         
         <main className={styles.main}>
           {loading ? 'Loading...' : <>
-            <div className={styles.grid}>
-              {data.users.map(item => (
-                <a key={item.id} href="#" className={styles.card}>
-                  <h2>{item.name}</h2>
-                  <p>E-mail: <span>{item.email}</span></p>
-                  <p>Phone: <span>{item.phone}</span></p>
-                </a>
-              ))}
-            </div>
+            {data.users.length ? <>
+              <div className={styles.grid}>
+                {data.users.map(item => (
+                  <a key={item.id} href="#" className={styles.card}>
+                    <h2>{item.name}</h2>
+                    <p>E-mail: <span>{item.email}</span></p>
+                    <p>Phone: <span>{item.phone}</span></p>
+                  </a>
+                ))}
+              </div>
+            </> : <span>No data</span>}
           </>}
         </main>
       </div>
